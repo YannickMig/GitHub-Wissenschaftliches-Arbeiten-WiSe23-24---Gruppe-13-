@@ -1,8 +1,13 @@
 ## Aufgabe 2a)
 
+#Oeffnet die Hilfsfunktionen wie z.B. Entropie
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+source("Funktionen-R-Skript 2.R")
+
+
 ## i)
 ## Fuer metrische Variablen
-
+ 
 deskriptive_stats <- function(x, functions = list(N = length, MEAN = mean, MEDIAN = median, STANDARDABWEICHUNG = sd, MINIMUM = min, MAXIMUM = max)){ 
   # Gewuenschte Statistiken koennen nach Bedarf eingefuegt werden
   result <- list()
@@ -12,6 +17,26 @@ deskriptive_stats <- function(x, functions = list(N = length, MEAN = mean, MEDIA
   }
   return(result)
 }
+
+
+#ii)
+#Erstellt deskriptive Statistiken für kategoriale Merkmale:
+
+kategoriale_stats <-function(x, functions = list(Laenge = length,Entropie = entropie, Norm_Entropie = nomentropie,
+                                                 Haeufigkeitstabelle = hktabelle )){
+  # Gewuenschte Statistiken koennen nach Bedarf eingefuegt werden
+  # Im default sind Laenge, Entropie, normierte Entropie und eine Hauefigkeitstabelle
+  result <- list()
+  for(i in 1:3){
+    result[i] <- functions[[i]](x) # An i'ter Stelle der Liste wird die Funktion auf die Daten (x) angewendet
+    names(result)[i] <- names(functions)[i] # Der Name des i'ten Elements der Liste wird auf den Namen der i'ten Funktion geaendert
+  }
+  cat("\nHauefigkeitstabelle: \n") #Ueberschrift
+  print(hktabelle(x)) #Gibt eine Hauefigkeitstabelle aus
+  cat("\n") #Absatz
+  return(result) #Ergebnisse ausgeben und Funktion beenden
+}
+
 
 # iii. 
 #Funktion für bivariate deskriptive Statistiken von zwei kategorialen Variablen
