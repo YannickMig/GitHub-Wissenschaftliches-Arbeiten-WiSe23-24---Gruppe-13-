@@ -8,7 +8,7 @@ source("Funktionen-R-Skript 2.R")
 ## i)
 ## Fuer metrische Variablen
  
-deskriptive_stats <- function(x, functions = list(N = length, MEAN = mean, 
+metrische_stats <- function(x, functions = list(N = length, MEAN = mean, 
                                                   MEDIAN = median, STANDARDABWEICHUNG = sd,
                                                   MINIMUM = min, MAXIMUM = max, SPANNWEITE = spannweite,
                                                   VARIATIONSKOEFFIZIENT = vari_koeff, INTERQUANTILSABSTAND = int_quant)){ 
@@ -45,7 +45,7 @@ kategoriale_stats <-function(x, functions = list(Laenge = length,Entropie = entr
 }
 
 
-# iii. 
+# iii)
 #Funktion für bivariate deskriptive Statistiken von zwei kategorialen Variablen
 compute_bivariate_stats_categorical <- function(var1, var2) {
   if (!is.factor(var1) || !is.factor(var2)) {
@@ -67,4 +67,40 @@ compute_bivariate_stats_categorical <- function(var1, var2) {
   
   # Rückgabe der Statistiken
   return(list(cross_table = cross_table, chi_sq_test = chi_sq_test))
+}
+
+# iv)
+# Funktion für Zusammengang zwischenmetrischen und dichotomen Variable 
+
+compute_bivariate_statistics <- function(metric_var, dichotom_var ){
+  metric_var_mean = mean(metric_var) #arithmetisches Mittel
+  metric_var_median = median(metric_var) #median bestimmen
+  metric_var_varianz = var(metric_var) #Varianz
+  metric_var_standardabw. = sqrt(metric_var_varianz) #Standardabweichung
+  
+  #Bestimme Häufigkeiten der 2 Auspraegungen
+  dichotomous_counts <- table(dichotom_var)
+  #Kreztabelle erstellen
+  cross_tab <- table(metric_var, dichotom_var)
+  
+}
+
+#v)
+#Visualisiert 4 kategoriale Variablen über Häufigkeits Barplots
+visual <- function(x,y,z,b = NULL){
+  if(!is.null(b)){ #wenn vier Variablen da sind
+    par(mfrow=c(2,2))
+    barplot(hktabelle(x), main=deparse(substitute(x))) #Mit Titel der Variable
+    barplot(hktabelle(y), main=deparse(substitute(y))) 
+    barplot(hktabelle(z), main=deparse(substitute(z)))
+    barplot(hktabelle(b), main=deparse(substitute(b)))
+    par(mfrow = c(1,1))
+  }
+  if(is.null(b)){ #fuer drei Variablen
+    par(mfrow=c(1,3)) #drei Grafiken nebeneinander
+    barplot(hktabelle(x), main=deparse(substitute(x)), ylim=c(0:1))
+    barplot(hktabelle(y), main=deparse(substitute(y)), ylim=c(0:1)) 
+    barplot(hktabelle(z), main=deparse(substitute(z)), ylim=c(0:1))   
+    par(mfrow = c(1,1))
+  }
 }
