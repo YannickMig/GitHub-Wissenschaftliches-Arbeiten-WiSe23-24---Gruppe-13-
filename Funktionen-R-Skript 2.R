@@ -25,3 +25,25 @@ normentropie <- function(x){
   }
   return(sum(ent)/log(length(x))) 
 }
+
+
+## Berechnet den Modus
+modus <- function(x){
+  return(names(which(table(x) == max(table(x)))))
+}
+
+## Berechnet den Variationskoeffizient
+vari_koeff <- function(x){
+  return(sd(x)/mean(x))
+}
+
+## Berechnet die Spannweite
+spannweite <- function(x){
+  return(max(x)-min(x))
+}
+
+## Berechnet den Interquantilsabstand
+int_quant <- function(x){
+  temp <- quantile(x)
+  return(temp[[4]]-temp[[2]])
+}

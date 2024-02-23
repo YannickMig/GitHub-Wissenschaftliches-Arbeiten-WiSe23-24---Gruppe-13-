@@ -8,13 +8,20 @@ source("Funktionen-R-Skript 2.R")
 ## i)
 ## Fuer metrische Variablen
  
-deskriptive_stats <- function(x, functions = list(N = length, MEAN = mean, MEDIAN = median, STANDARDABWEICHUNG = sd, MINIMUM = min, MAXIMUM = max)){ 
+deskriptive_stats <- function(x, functions = list(N = length, MEAN = mean, 
+                                                  MEDIAN = median, STANDARDABWEICHUNG = sd,
+                                                  MINIMUM = min, MAXIMUM = max, SPANNWEITE = spannweite,
+                                                  VARIATIONSKOEFFIZIENT = vari_koeff, INTERQUANTILSABSTAND = int_quant)){ 
   # Gewuenschte Statistiken koennen nach Bedarf eingefuegt werden
   result <- list()
   for(i in 1:length(functions)){
     result[i] <- functions[[i]](x) # An i'ter Stelle der Liste wird die Funktion auf die Daten (x) angewendet
     names(result)[i] <- names(functions)[i] # Der Name des i'ten Elements der Liste wird auf den Namen der i'ten Funktion geaendert
   }
+  result[length(functions)+1] <- quantile(x)[[2]]
+  result[length(functions)+2] <- quantile(x)[[4]]
+  names(result)[length(functions)+1] <- "QUANTIL_25_PROZENT"
+  names(result)[length(functions)+2] <- "QUANTIL_75_PROZENT"
   return(result)
 }
 
