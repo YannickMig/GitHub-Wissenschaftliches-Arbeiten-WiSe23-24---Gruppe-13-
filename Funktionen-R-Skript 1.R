@@ -8,7 +8,7 @@ source("Funktionen-R-Skript 2.R")
 ## i)
 ## Fuer metrische Variablen
  
-metrische_stats <- function(x, functions = list(N = length, MEAN = mean, 
+metrische_stats <- function(x, functions = list(ANZAHL = length, MEAN = mean, 
                                                   MEDIAN = median, STANDARDABWEICHUNG = sd,
                                                   MINIMUM = min, MAXIMUM = max, SPANNWEITE = spannweite,
                                                   VARIATIONSKOEFFIZIENT = vari_koeff, INTERQUANTILSABSTAND = int_quant)){ 
@@ -29,12 +29,12 @@ metrische_stats <- function(x, functions = list(N = length, MEAN = mean,
 #ii)
 #Erstellt deskriptive Statistiken für kategoriale Merkmale:
 
-kategoriale_stats <-function(x, functions = list(Laenge = length,Entropie = entropie, Norm_Entropie = nomentropie,
-                                                 Haeufigkeitstabelle = hktabelle )){
+kategoriale_stats <-function(x, functions = list(Laenge = length,Entropie = entropie, Norm_Entropie = normentropie, Modus = modus,
+                                                 Haeufigkeitstabelle = hktabelle)){
   # Gewuenschte Statistiken koennen nach Bedarf eingefuegt werden
   # Im default sind Laenge, Entropie, normierte Entropie und eine Hauefigkeitstabelle
   result <- list()
-  for(i in 1:3){
+  for(i in 1:(length(functions)-1)){
     result[i] <- functions[[i]](x) # An i'ter Stelle der Liste wird die Funktion auf die Daten (x) angewendet
     names(result)[i] <- names(functions)[i] # Der Name des i'ten Elements der Liste wird auf den Namen der i'ten Funktion geaendert
   }
