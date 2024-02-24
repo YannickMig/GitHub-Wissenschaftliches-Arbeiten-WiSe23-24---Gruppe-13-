@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-setwd("C:/Users/Jacqu/Documents/GitHub/GitHub-Wissenschaftliches-Arbeiten-WiSe23-24---Gruppe-13-")
-daten <- read.csv("titanic.csv")
-=======
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("Funktionen-R-Skript 1.R")
 daten <- read.csv("bearbeitet_titanic.cvs")
@@ -189,7 +185,6 @@ compute_bivariate_statistics(daten$Age, daten$Survived)
 #$Cohens_d
 #[1] -0.1619749
 
-
 ### Zusammenhand zwischen Ticketspreis und Überleben ###
 
 compute_bivariate_statistics(daten$Fare, daten$Survived)
@@ -222,6 +217,3 @@ Zustiegshafen <-  daten$Embarked
 
 #Grafiken zu Geschlecht, Zustiegshafen, Klasse:
 visual(Geschlecht, Klasse, Zustiegshafen)
-
-
->>>>>>> Stashed changes
