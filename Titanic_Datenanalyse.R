@@ -185,6 +185,30 @@ compute_bivariate_statistics(daten$Age, daten$Survived)
 #$Cohens_d
 #[1] -0.1619749
 
+### Zusammenhand zwischen Ticketspreis und Überleben ###
+
+compute_bivariate_statistics(daten$Fare, daten$Survived)
+
+# $Korrelation_Spearman
+# [1] 0.3237361
+# 
+# $T_Test
+# 
+# Welch Two Sample t-test
+# 
+# data:  metric_var by dichotom_var
+# t = -6.8391, df = 436.7, p-value = 2.699e-11
+# alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+# 95 percent confidence interval:
+#   -33.82912 -18.72592
+# sample estimates:
+#   mean in group 0 mean in group 1 
+# 22.11789        48.39541 
+# 
+# 
+# $Cohens_d
+# [1] 0.5287927
+
 ### Grafiken ###
 
 Klasse <- daten$Pclass
@@ -193,5 +217,3 @@ Zustiegshafen <-  daten$Embarked
 
 #Grafiken zu Geschlecht, Zustiegshafen, Klasse:
 visual(Geschlecht, Klasse, Zustiegshafen)
-
-
