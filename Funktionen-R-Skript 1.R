@@ -29,7 +29,7 @@ metrische_stats <- function(x, functions = list(ANZAHL = length, MEAN = mean,
 
 
 #ii)
-#Erstellt deskriptive Statistiken für kategoriale Merkmale:
+#Erstellt deskriptive Statistiken fuer kategoriale Merkmale:
 
 kategoriale_stats <-function(x, functions = list(Laenge = length,Entropie = entropie, Norm_Entropie = normentropie, Modus = modus,
                                                  Haeufigkeitstabelle = hktabelle)){
@@ -48,7 +48,7 @@ kategoriale_stats <-function(x, functions = list(Laenge = length,Entropie = entr
 
 
 # iii)
-#Funktion für bivariate deskriptive Statistiken von zwei kategorialen Variablen
+#Funktion fuer bivariate deskriptive Statistiken von zwei kategorialen Variablen
 compute_bivariate_stats_categorical <- function(var1, var2) {
   #if (!is.factor(var1) || !is.factor(var2)) {
   #  stop("Die Eingaben müssen kategoriale Variablen sein.")
@@ -82,7 +82,7 @@ compute_bivariate_statistics <- function(metric_var, dichotom_var ){
   metric_var_varianz = var(metric_var) #Varianz
   metric_var_standardabw. = sqrt(metric_var_varianz) #Standardabweichung
   
-  #Bestimme Häufigkeiten der 2 Auspraegungen
+  #Bestimme Haeufigkeiten der 2 Auspraegungen
   dichotomous_counts <- table(dichotom_var)
   #Kreztabelle erstellen
   cross_tab <- table(metric_var, dichotom_var)
@@ -101,7 +101,7 @@ compute_bivariate_statistics <- function(metric_var, dichotom_var ){
 }
 
 #v)
-#Visualisiert 4 kategoriale Variablen über Häufigkeits Barplots
+#Visualisiert 4 kategoriale Variablen über Haeufigkeits Barplots
 visual <- function(x,y,z,b = NULL){
   if(!is.null(b)){ #wenn vier Variablen da sind
     par(mfrow=c(2,2))
