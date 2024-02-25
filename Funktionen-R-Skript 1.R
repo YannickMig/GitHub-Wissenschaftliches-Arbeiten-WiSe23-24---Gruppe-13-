@@ -3,6 +3,8 @@
 #Oeffnet die Hilfsfunktionen wie z.B. Entropie
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("Funktionen-R-Skript 2.R")
+#install.packages("rcompanion")
+library("rcompanion")
 
 
 ## i)
@@ -66,7 +68,7 @@ compute_bivariate_stats_categorical <- function(var1, var2) {
   num_cols <- ncol(cross_table)
   
   # Berechnung von Cramer's V
-  cramers_v <- CramerV(var1,var2)
+  cramers_v <- cramerV(var1,var2)
   # Rückgabe der Statistiken
   return(list(Kreuztabelle = cross_table, chi_quadrat=chi_square,   chi_sq_test = chi_sq_test, CramersV =cramers_v))
 }

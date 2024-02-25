@@ -1,6 +1,9 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
 source("Funktionen-R-Skript 1.R")
 daten <- read.csv("bearbeitet_titanic.cvs")
+#install.packages("rcompanion")
+library("rcompanion")
 
 
 ### Alter ###
@@ -217,3 +220,25 @@ Zustiegshafen <-  daten$Embarked
 
 #Grafiken zu Geschlecht, Zustiegshafen, Klasse:
 visual(Geschlecht, Klasse, Zustiegshafen)
+
+#Boxplot zum Zusammenhang Überleben-Ticketpreis
+boxplot(daten$Fare ~ daten$Survived, ylim = c(0,200), ylab="Ticketpreis",
+        xlab="Überleben", main="Zusammenhang Überleben und Ticketpreis",
+        col=c("orange", "lightgreen"))
+#durch ylim werden einige Ausreißer weggelassen, aber so ist es einfacher zu
+#interpretieren und zu erkennen
+
+#Mosaikplot zum Überleben in Abhängigkeit der Reiseklasse:
+mosaicplot(daten$Pclass ~ daten$Survived, xlab="Reiseklasse", ylab="Überlebn",
+           main="Überleben in Abhängigkeit der Reiseklasse" ,
+           col=c("orange", "lightgreen"))
+
+#Zusammenhang Überleben,Alter und Ticketpreis
+col <- c(rep("orange",891))
+col[which(daten$Survived == T)] <- "green"
+plot(daten$Fare ~ daten$Age, ylim=c(0,200), col=col, pch=16, cex=0.8,
+     xlab="Alter", ylab="Ticketpreis", main="Ticketpreis in Abhängigkeit vom Alter")
+legend("topright", cex = 0.7 , pch = 16 , xpd = NA , col=col,
+       legend = c( "Kein Überleben","Überleben")  ,
+       y.intersp = 0.75,)
+
