@@ -229,7 +229,7 @@ boxplot(daten$Fare ~ daten$Survived, ylim = c(0,200), ylab="Ticketpreis",
 #interpretieren und zu erkennen
 
 #Mosaikplot zum Überleben in Abhängigkeit der Reiseklasse:
-mosaicplot(daten$Pclass ~ daten$Survived, xlab="Reiseklasse", ylab="Überlebn",
+mosaicplot(daten$Pclass ~ daten$Survived, xlab="Reiseklasse", ylab="Überleben",
            main="Überleben in Abhängigkeit der Reiseklasse" ,
            col=c("orange", "lightgreen"))
 
